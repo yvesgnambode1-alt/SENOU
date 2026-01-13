@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Découvre tes infos 🎉</title>
+<style>
+    /* Style général */
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        color: #fff;
+    }
+
+    @keyframes gradientBG {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+    }
+
+    .container {
+        background: rgba(0,0,0,0.5);
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        width: 90%;
+        max-width: 450px;
+    }
+
+    input, button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 15px;
+        border-radius: 10px;
+        border: none;
+        font-size: 16px;
+    }
+
+    input {
+        outline: none;
+    }
+
+    button {
+        background-color: #ff6f91;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background-color: #ff3c78;
+    }
+
+    #resultat {
+        margin-top: 25px;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 1.5;
+        transition: all 0.5s;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Découvre tes infos personnalisées ✨</h2>
+    <input type="text" id="nom" placeholder="Entrez votre nom">
+    <button onclick="donnerInfos()">Voir mes infos</button>
+    <div id="resultat"></div>
+</div>
+
+<script>
+function donnerInfos() {
+    const nom = document.getElementById("nom").value.trim();
+    if (nom === "") {
+        document.getElementById("resultat").innerText = "❌ Veuillez entrer votre nom.";
+        return;
+    }
+
+    // Infos amusantes
+    const infos = [
+        "Vous êtes très créatif ! 🎨",
+        "Vous avez un grand sens de l'humour 😄",
+        "Vous êtes un aventurier dans l'âme 🏞️",
+        "Les gens vous trouvent très fiable 🤝",
+        "Vous avez un talent caché ! 🤫",
+        "Vous aimez les surprises 🎁",
+        "Vous avez une énergie contagieuse ⚡",
+        "Vous êtes plein d'idées originales 💡",
+        "Les amis vous adorent ❤️",
+        "Votre positivité est inspirante 🌟"
+    ];
+
+    // Créer plusieurs infos selon le nom
+    let index = 0;
+    for (let i = 0; i < nom.length; i++) {
+        index += nom.charCodeAt(i);
+    }
+
+    // Affiche 3 infos différentes
+    const infosChoisies = [];
+    for (let i = 0; i < 3; i++) {
+        infosChoisies.push(infos[(index + i) % infos.length]);
+    }
+
+    document.getElementById("resultat").innerHTML = 
+        `Salut <span style="color:#FFD700">${nom}</span> !<br>` +
+        infosChoisies.join("<br>");
+}
+</script>
+
+</body>
+</html>
